@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+    <style>
+        button{
+            margin-top: 1rem;
+            margin-inline: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sistema Bibliotecário</h1>
+    <div>
+        <button id="btn1">Add</button>
+        <button id="btn2">Delete</button>
+    </div>
+    <script>
+        const btn1 = document.getElementById("btn1");
+        const btn2 = document.getElementById("btn2");
+
+        btn1.addEventListener("click", () => {
+            window.location.href = "/add"
+        });
+        btn2.addEventListener("click", () => {
+            window.location.href = "/listar"
+        });
+    </script>
+</body>
+</html>
