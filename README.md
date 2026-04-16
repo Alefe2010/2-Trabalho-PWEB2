@@ -88,16 +88,3 @@ npm start
 
 ou (com nodemon):
 npm run dev
-
----
-
-## 🧪 Exemplo de JSON para criação de livro
-
-```json
-{
-  "autor": "Machado de Assis",
-  "dataLancamento": "1881-01-01",
-  "nota": 9.5,
-  "paginas": 256,
-  "categoria": "Romance"
-}
