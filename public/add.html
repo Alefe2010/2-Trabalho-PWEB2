@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Livro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Novo Livro</h1>
+    <div class="card">
+        <input id="nome" placeholder="Título do Livro">
+        <input id="autor" placeholder="Autor">
+        <input id="categoria" placeholder="Categoria">
+        <input id="lancamento" placeholder="Ano de Lançamento" type="number">
+        <input id="paginas" placeholder="Total de Páginas" type="number">
+        
+        <button class="btn" onclick="enviar()">Salvar Livro</button>
+        <a href="lista.html" class="btn btn-back">Cancelar</a>
+    </div>
+
+    <script>
+        async function enviar() {
+            const livro = {
+                nome: document.getElementById("nome").value,
+                autor: document.getElementById("autor").value,
+                categoria: document.getElementById("categoria").value,
+                lancamento: document.getElementById("lancamento").value,
+                paginas: document.getElementById("paginas").value
+            };
+
+            if(!livro.nome || !livro.autor) return alert("Preencha ao menos Nome e Autor!");
+
+            await fetch("/api/livros", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(livro)
+            });
+
+            window.location.href = "lista.html";
+        }
+    </script>
+</body>
+</html>

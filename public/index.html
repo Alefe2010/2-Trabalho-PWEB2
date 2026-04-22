@@ -1,32 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
-    <style>
-        button{
-            margin-top: 1rem;
-            margin-inline: 1rem;
-        }
-    </style>
+    <title>Biblioteca Digital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <h1>Sistema Bibliotecário</h1>
-    <div>
-        <button id="btn1">Add</button>
-        <button id="btn2">Delete</button>
+<body style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh;">
+    <i class="fa-solid fa-book-bookmark" style="font-size: 4rem; color: var(--verde); margin-bottom: 20px;"></i>
+    <h1 style="border: none; text-align: center;">Biblioteca Digital</h1>
+    <p style="font-size: 1.2rem; color: #94a3b8; margin-bottom: 30px;">O que deseja fazer hoje?</p>
+    
+    <div style="display: flex; gap: 20px;">
+        <a href="lista.html" class="btn" style="padding: 15px 30px;">
+            <i class="fa-solid fa-list-ul"></i> Ver Catálogo
+        </a>
+        <a href="add.html" class="btn" style="padding: 15px 30px; background: var(--branco); color: var(--fundo);">
+            <i class="fa-solid fa-plus"></i> Adicionar Livro
+        </a>
     </div>
-    <script>
-        const btn1 = document.getElementById("btn1");
-        const btn2 = document.getElementById("btn2");
-
-        btn1.addEventListener("click", () => {
-            window.location.href = "/add"
-        });
-        btn2.addEventListener("click", () => {
-            window.location.href = "/listar"
-        });
-    </script>
 </body>
 </html>

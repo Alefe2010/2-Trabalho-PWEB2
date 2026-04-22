@@ -1,0 +1,108 @@
+:root {
+    --verde: rgb(9, 139, 52);
+    --verde-hover: rgb(11, 161, 61);
+    --vermelho: #ef4444;
+    --branco: #ffffff;
+    --fundo: #0f172a;
+    --card-bg: #1e293b;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--fundo);
+    color: var(--branco);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Ícone da Home no Canto */
+.home-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--verde);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
+}
+.home-icon:hover { transform: scale(1.2) rotate(15deg); background: var(--verde-hover); }
+
+h1 { 
+    border-bottom: 3px solid var(--verde); 
+    padding-bottom: 10px; 
+    margin-bottom: 30px;
+    animation: slideDown 0.5s ease-out;
+}
+
+/* Botões */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+    background: var(--verde);
+    color: white;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(9,139,52,0.4); background: var(--verde-hover); }
+
+.btn-del { background: var(--vermelho); margin-top: 10px; width: 100%; justify-content: center; }
+.btn-del:hover { background: #dc2626; box-shadow: 0 5px 15px rgba(239,68,68,0.4); }
+
+.btn-back { background: #64748b; }
+
+/* Grid e Cards */
+#lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 5px solid var(--verde);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    animation: fadeIn 0.6s ease-out both;
+}
+.card:hover { transform: translateY(-8px); border-left-width: 10px; background: #26334d; }
+
+input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #334155;
+    background: #1e293b;
+    color: white;
+    width: calc(100% - 28px);
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+input:focus { border-color: var(--verde); outline: none; }
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
