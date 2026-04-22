@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Livros</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="index.html" class="home-icon" title="Voltar para Home">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+    <h1>Catálogo de Livros</h1>
+    
+    <div style="margin-bottom: 30px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <input id="filtro" placeholder="Filtrar por categoria..." style="width: 250px; margin-bottom: 0;">
+        <button class="btn" onclick="filtrar()"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+        <button class="btn btn-back" onclick="carregar()"><i class="fa-solid fa-rotate-left"></i> Limpar</button>
+        <a href="add.html" class="btn" style="margin-left: auto;"><i class="fa-solid fa-plus"></i> Novo Livro</a>
+    </div>
+
+    <div id="lista"></div>
+
+    <script>
+        async function carregar() {
+            const res = await fetch("/api/livros");
+            const livros = await res.json();
+            mostrar(livros);
+        }
+
+        async function filtrar() {
+            const cat = document.getElementById("filtro").value;
+            const res = await fetch(`/api/livros?cat=${cat}`);
+            const livros = await res.json();
+            mostrar(livros);
+        }
+
+        function mostrar(livros) {
+            const div = document.getElementById("lista");
+            div.innerHTML = livros.length ? "" : "<p>Nenhum livro na estante...</p>";
+            
+            livros.forEach((l, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.animationDelay = `${index * 0.05}s`; // Efeito cascata
+                card.innerHTML = `
+                    <h3 style="color: var(--verde); margin-top:0;">${l.nome}</h3>
+                    <p><i class="fa-solid fa-pen-nib"></i> <strong>Autor:</strong> ${l.autor}</p>
+                    <p><i class="fa-solid fa-bookmark"></i> <strong>Categoria:</strong> ${l.categoria}</p>
+                    <p style="color: #94a3b8;"><small><i class="fa-solid fa-calendar"></i> ${l.lancamento} | <i class="fa-solid fa-file-lines"></i> ${l.paginas} págs</small></p>
+                    <button class="btn btn-del" onclick="remover('${l.id}')">
+                        <i class="fa-solid fa-trash"></i> Excluir
+                    </button>
+                `;
+                div.appendChild(card);
+            });
+        }
+
+        async function remover(id) {
+            if(confirm("Deseja remover este exemplar da biblioteca?")) {
+                await fetch(`/api/livros/${id}`, { method: "DELETE" });
+                carregar();
+            }
+        }
+        carregar();
+    </script>
+</body>
+</html>
